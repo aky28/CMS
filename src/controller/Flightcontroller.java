@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.Service;
 import dao.FlightDao;
 import bean.Flight;
+import bean.NewsDetail;
 
 /**
  * Servlet implementation class Flightcontroller
@@ -47,29 +48,11 @@ public class Flightcontroller extends HttpServlet {
 		Service s=new Service();
 		FlightDao fd=new FlightDao();
 		ArrayList<Flight> cust=new ArrayList<Flight>();
-
-		/*String name=request.getParameter("name");
-		String dob=request.getParameter("date");
-		String password=request.getParameter("pass");
-		String gender=request.getParameter("gender");
-		c.setDob(dob);
-		c.setGender(gender);
-		c.setName(name);
-		c.setPassowrd(password);
-		try {
-			s.Add(c);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
-		//String fname=request.getParameter("")
+		ArrayList<NewsDetail> news=new ArrayList<NewsDetail>();
 		try {
 			cust=s.views();
-			if(cust==null){
-				System.out.println("null");
-			}else
-			System.out.println("size:    "+cust.size());
+			news=s.newsView();
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,10 +60,12 @@ public class Flightcontroller extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		RequestDispatcher rd= request.getRequestDispatcher("include.jsp");
+		RequestDispatcher rd= request.getRequestDispatcher("Home.jsp");
 		request.setAttribute("flist",cust);
+		request.setAttribute("nlist",news);
 		rd.forward(request, response);
 	}
+	
 
 }
 

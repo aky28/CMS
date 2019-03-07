@@ -1,5 +1,6 @@
 <%@page import="service.Service" %>
 <%@page import="bean.Flight" %>
+<%@page import="bean.NewsDetail" %>
 <%@page import="java.util.*" %>
 <%@page import="java.io.PrintWriter" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -14,9 +15,17 @@
 <form action="Flightcontroller" method="post">
 <input type="submit" />
 </form>
-<table style="border: 2px solid black;">
+		<% /* session=request.getSession();
+		ArrayList<NewsDetail> news=(ArrayList<NewsDetail>)request.getAttribute("nlist");
+		//=new ArrayList<NewsDetail>();
+		//session.setAttribute("nlist",news); */
+		%>
+
+<table style="border: 2px solid black; margin= 15px;">
 <tr>
-<td>Home</td>
+<td>
+<a href="Home.jsp"><input type="button" value="Home" /></a>
+</td>
 </tr>
 <%
 /* Service s=new Service();
@@ -28,10 +37,12 @@ for(Flight l:flight)
 {%>
 
 <tr>
-<td><%=l.getFlightnumber()%></td>
+<td>
+<a href="flight.jsp?fn='<%=l.getFlightnumber()%>'"><input type="button" value='<%=l.getFlightnumber()%>' /></a>
+</td>
 </tr>
-<%}}else{
-	response.getWriter().print("not");} %>
+<%}}/* else{
+	response.getWriter().print("not");}  */%>
 </table>
 </body>
 </html>
